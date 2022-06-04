@@ -22,26 +22,36 @@ function nextJoke() {
 
 nextJokeButton!.addEventListener("click", nextJoke, false);
 
-//Actualizar la puntuación de la propiedad "score" del chiste 
-function addScore(election: string, jokeOption: string) {
+/**
+ * Añade la puntuación a la propiedad "score" del chiste que aparece en pantalla
+ * 
+ * @ param election - la elección del botón 
+ * @ param jokeOnScreen - el chiste que aparece en este momento por pantalla 
+ * 
+ */
+
+function addScore(election: string, jokeOnScreen: string) {
     switch (election){
         case "score1":
-            let findJoke = reportJokes.find(joke=> joke.joke === jokeOption)
+            let findJoke = reportJokes.find(joke=> joke.joke === jokeOnScreen)
             findJoke!.score = 1;
             break;
         case "score2":
-            let findJoke1 = reportJokes.find(joke=> joke.joke === jokeOption)
+            let findJoke1 = reportJokes.find(joke=> joke.joke === jokeOnScreen)
             findJoke1!.score = 2;
             break;
         case "score3":
-            let findJoke2 = reportJokes.find(joke=> joke.joke === jokeOption)
+            let findJoke2 = reportJokes.find(joke=> joke.joke === jokeOnScreen)
             findJoke2!.score = 3;
             break;
     }
-    console.clear(); //Para que únicamente se imprima la última actualización del array.
+    console.clear(); //Para no sobrecargar la consola y que únicamente se imprima la última actualización del array.
     console.log(reportJokes);
 }
 
+/**
+ * Tras pulsar uno de los 3 botones de score se llama a la función evaluateJoke(), que llamará a la función addScore() con los argumentos necesarios.
+ */
 
 function evaluateJoke1() {
         addScore("score1", joke!.innerHTML);
