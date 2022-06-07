@@ -1,4 +1,7 @@
-const url = 'https://icanhazdadjoke.com/';
+const urlJokes = 'https://icanhazdadjoke.com/';
+const urlChuck = 'https://api.chucknorris.io/jokes/random';
+const urlWeather = 'https://api.openweathermap.org/data/2.5/weather?q=Barcelona,Spain&appid=b7e41953afbba834a5f415cf165fbf22';
+let weather = document.querySelector('#weather');
 let joke = document.querySelector('#joke');
 const nextJokeButton = document.getElementById("nextJokeBtn");
 let reportJokes: {joke: string, score: number, date: string} [] = []; //Para asignar tipo object inside array. 
@@ -6,9 +9,16 @@ let day = new Date();
 let today = day.toISOString();
 //let today = day.getDate() + " / " + (day.getMonth()+1) + " / " +  day.getFullYear()
 
-//--Llamada a la API--
+// --Llamada a la API del tiempo--//
+fetch(urlWeather)
+    .then(function (res) { return res.json(); })
+    .then(function (data) {return weather!.innerHTML = data.weather.map((object:any) => object.main)})
+    ["catch"](function (err) { return console.error('Solicitud fallida', err); });
+
+//--Llamada a las API de chistes--
+    //API icanhazdadjoke.com
 function nextJoke() {
-  fetch(url, {
+  fetch(urlJokes, {
         method: "GET",
         headers: {
             "Accept": "application/json"
@@ -19,8 +29,42 @@ function nextJoke() {
         .then(function(data2) {reportJokes.push({joke: data2, score: 1, date: today})}) // Añadir los datos del chiste como un objeto en el reportJokes array
         .catch(function (err) {return console.error('Solicitud fallida', err); });
 }
+//API chistes Chuck Norris
+function chuckJoke(){
+    fetch(urlChuck)
+        .then(function (res) { return res.json(); })
+        .then(function (jokeOnScreen) { return joke!.innerHTML = jokeOnScreen.value; }) // El chiste que aparecerá por pantalla
+        .then(function(data2) {reportJokes.push({joke: data2, score: 1, date: today})}) // Añadir los datos del chiste como un objeto en el reportJokes array
+        .catch(function (err) {return console.error('Solicitud fallida', err); });
+}
 
-nextJokeButton!.addEventListener("click", nextJoke, false);
+/**
+ *
+ *  Cada vez que se clica el botón de "Següent acudit" alterna las llamadas a las diferentes APIs de chistes
+ *
+ */
+ onload = alternApi;
+
+ function alternApi() {
+     let onclick = changeJoke();
+     nextJokeButton!.addEventListener("click", onclick, false);
+ }
+ 
+ function changeJoke() {
+     var count = 1;
+     var next = function() {
+         switch(count) {
+             case 1:
+                 nextJoke();
+                 break;
+             case 2:
+                 chuckJoke();
+                 break;
+         }
+         count = (count == 1) ? count +1 : 1;
+     }
+     return next;
+ }
 
 /**
  * Añade la puntuación a la propiedad "score" del chiste que aparece en pantalla
