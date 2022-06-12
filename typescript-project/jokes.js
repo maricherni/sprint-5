@@ -1,8 +1,9 @@
 "use strict";
 const urlJokes = 'https://icanhazdadjoke.com/';
 const urlChuck = 'https://api.chucknorris.io/jokes/random';
-const urlWeather = 'https://api.openweathermap.org/data/2.5/weather?q=Barcelona,Spain&appid=b7e41953afbba834a5f415cf165fbf22';
-let weather = document.querySelector('#weather');
+const urlWeather = 'https://api.openweathermap.org/data/2.5/weather?q=Barcelona,Spain&units=metric&appid=b7e41953afbba834a5f415cf165fbf22';
+let weather = document.querySelector('#icon');
+let temperature = document.querySelector('#temperature');
 let joke = document.querySelector('#joke');
 const nextJokeButton = document.getElementById("nextJokeBtn");
 let reportJokes = []; //Para asignar tipo object inside array. 
@@ -12,7 +13,46 @@ let today = day.toISOString();
 // --Llamada a la API del tiempo--//
 fetch(urlWeather)
     .then(function (res) { return res.json(); })
-    .then(function (data) { return weather.innerHTML = data.weather.map((object) => object.main); })["catch"](function (err) { return console.error('Solicitud fallida', err); });
+    .then(function (data) {
+    return (weather.innerHTML = data.weather.map((object) => {
+        object.description;
+        switch (object.description) {
+            case "scattered clouds":
+                return weather.innerHTML = "☁";
+                break;
+            case "clear sky":
+                return weather.innerHTML = "☀️";
+                break;
+            case "few clouds":
+                return weather.innerHTML = "&#x26C5";
+                break;
+            case "broken clouds":
+                return weather.innerHTML = "&#xU2601";
+                break;
+            case "shower rain":
+                return weather.innerHTML = "&#x1F4A7&#x1F4A7";
+                break;
+            case "rain":
+                return weather.innerHTML = "&#x1F4A7";
+                break;
+            case "thunderstorm":
+                return weather.innerHTML = "&#x26A1";
+                break;
+            case "snow":
+                return weather.innerHTML = "❄️";
+                break;
+            case "mist":
+                return weather.innerHTML = " &#x1f301";
+                break;
+            default:
+                return weather.innerHTML = "&#x1F47D";
+                break;
+        }
+        /* if (object.description === "scattered clouds") {
+            return weather!.innerHTML = "&#9729";
+        } */
+    })) + (temperature.innerHTML = (data.main.temp).toFixed(0) + "ºC");
+})["catch"](function (err) { return console.error('Solicitud fallida', err); });
 //--Llamada a las API de chistes--
 //API icanhazdadjoke.com
 function nextJoke() {
