@@ -1,0 +1,171 @@
+*{
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+ }
+ /* --HEADER-- */
+ header{
+    display: flex;
+    margin: 2rem;    
+ }
+
+ .weather{
+    margin-right: 0.5rem;
+    font-size: 2rem;
+ }
+
+ #temperature{
+    font-size: 1.2rem;
+    margin-top: 0.7rem;
+}
+
+/* --BODY-- */
+   /* Background */
+.background{
+   display: flex;
+   justify-content: center;
+   margin-top: -10%;
+}
+#image-left{
+   width: 7%;;
+   align-self: flex-end;
+}
+#image-center{
+   width: 48%;
+   z-index:1;
+}
+#image-right{
+   margin-top: 5rem;
+   width: 10%;
+   align-self: flex-start;
+}
+
+/* Jokes section */
+section {
+   position:relative; 
+}
+.container{
+   position: absolute;
+   align-content: center;
+   text-align: center;
+   z-index: 2;  
+   margin: 12% 40% 0 33%;
+}
+section .container .text{
+   margin: 2rem;
+   color:antiquewhite;
+}
+.score{
+   border: none;
+   margin: 0 1rem 1.5rem 0; 
+   background-color: transparent;
+   font-size: 3rem;
+}
+ #nextJokeBtn{
+    border-radius: 25px;
+    color: black;
+    border: solid 0.5px black;
+    padding: 0.7rem;
+    font-weight: bold;
+    background-color:rgb(255, 208, 0);
+} 
+ button:active{
+    border-radius: 100%;
+    background-color:palevioletred;
+ }
+ #nextJokeBtn:active{
+   background-color:yellow;
+}
+
+@media only screen and (max-width: 400px) {
+/* header */
+   .weather{
+      margin-top: 0.7rem;
+      font-size: 40%;
+   }
+   #temperature{
+      font-size: 40%;
+   }
+
+/* body - joke */
+   .container{
+     margin: 5% 20% 0 15%;
+   }
+   section .container .text{
+      margin-top: 1rem;
+      margin-bottom: 0;
+      font-size: xx-small;
+   }
+   #joke{
+      margin-top: 5%;
+      font-size: 20%;
+   }
+   section .container .score{
+      margin: 0;
+      font-size:60%;
+   }
+   #nextJokeBtn{
+      padding:1%;
+      font-size: 40%;
+  } 
+}
+@media only screen and (max-width: 600px) {
+   /* header */
+      .weather{
+         margin-top: 0.7rem;
+         font-size: 70%;
+      }
+      #temperature{
+         font-size: 70%;
+      }
+   /* body - joke */
+      .container{
+        margin: 5% 34% 0 26%;
+      }
+      section .container .text{
+         margin-top: 2rem;
+         margin-bottom: 0;
+         font-size: 60%;
+      }
+      #joke{
+         margin-top: 5%;
+         font-size: 60%;
+      }
+      section .container .score{
+         margin: 10% 0 3% 0;
+         font-size:60%;
+      }
+      #nextJokeBtn{
+         padding:1%;
+         font-size: 60%;
+     } 
+   }
+   @media only screen and (max-width: 1006px) {
+      /* header */
+         .weather{
+            margin-top: 0.7rem;
+            font-size: 80%;
+         }
+         #temperature{
+            font-size: 80%;
+         }
+      /* body - joke */
+         .container{
+           margin: 8% 35% 0 28%;
+         }
+         section .container .text{
+            margin-top: 2rem;
+            margin-bottom: 0;
+            font-size: 60%;
+         }
+         #joke{
+            margin-top: 5%;
+            font-size: 60%;
+         }
+         section .container .score{
+            margin: 10% 0 3% 0;
+            font-size:100%;
+         }
+         #nextJokeBtn{
+            padding:1%;
+            font-size: 60%;
+        } 
+      }
