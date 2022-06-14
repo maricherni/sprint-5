@@ -132,10 +132,10 @@ function evaluateJoke1() {
     addScore("score1", joke.innerHTML);
 }
 function evaluateJoke2() {
-    addScore('score2', joke.innerHTML);
+    addScore("score2", joke.innerHTML);
 }
 function evaluateJoke3() {
-    addScore('score3', joke.innerHTML);
+    addScore("score3", joke.innerHTML);
 }
 var score1 = document.getElementById("score1").addEventListener("click", evaluateJoke1, false);
 var score2 = document.getElementById("score2").addEventListener("click", evaluateJoke2, false);
